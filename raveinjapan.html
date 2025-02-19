@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rave in Japan</title>
+  <link rel="icon" href="10-2-anime-png-images.png" type="image/png">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-image: url('wallhaven-gpyldl.png');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden; /* Prevents scrolling during the overlay phase */
+    }
+
+    /* Dark overlay with the "Click to Enter" text */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999; /* Ensures overlay is on top */
+      opacity: 1;
+      transition: opacity 1s ease;
+    }
+
+    .overlay-text {
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    /* Dark overlay fade-out */
+    .overlay-fade {
+      opacity: 0;
+      pointer-events: none; /* Disables interaction after fade */
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent overlay */
+      z-index: 0; /* Ensures the overlay is behind the box */
+    }
+
+    .transparent-box {
+      width: 500px;  /* Increased width */
+      height: 300px; /* Increased height */
+      background-color: rgba(255, 255, 255, 0.6); /* More transparent (opacity: 0.6) */
+      border-radius: 10px; /* Optional: rounded corners */
+      box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.4); /* Reduced glow effect */
+      z-index: 1; /* Ensures the box is on top of the overlay */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .glowing-text {
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 2;
+      margin-top: -80px; /* Moved the text further up */
+      animation: glow 3s infinite alternate; /* Slower glow animation */
+    }
+
+    .socials-text {
+      color: white;
+      font-size: 20px; /* Smaller font size for 'socials' */
+      text-align: center;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 2;
+      margin-top: 20px; /* Adds space between the texts */
+      animation: glow 3s infinite alternate; /* Slower glow animation */
+    }
+
+    /* Glowing text effect with reduced intensity */
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 2px white, 0 0 3px white, 0 0 6px white;
+      }
+      100% {
+        text-shadow: 0 0 4px white, 0 0 6px white, 0 0 8px white;
+      }
+    }
+
+    /* Button image */
+    .button-container {
+      position: absolute;
+      z-index: 3;    /* Ensures it is on top of the overlay */
+    }
+
+    /* Left button */
+    .button-left {
+      left: 180px;   /* Adjusted slightly to the left */
+      bottom: 40px;  /* Moved the left button up a little */
+    }
+
+    /* Right button */
+    .button-right {
+      left: 260px;   /* Adjusted slightly to the right, same distance as left button */
+      bottom: 40px;  /* Moved the right button up a little */
+    }
+
+    .button-container img {
+      width: 60px;   /* Button image size */
+      height: 60px;  /* Button image size */
+      border-radius: 5px; /* Optional: rounded corners for the image */
+      cursor: pointer; /* Makes the image clickable like a button */
+      background: transparent; /* Ensures the background doesn't override transparency */
+    }
+
+    /* Left White Box with Video */
+    .left-box {
+      position: absolute;
+      left: 100px;  /* Added more space from the left side */
+      top: 50%;  /* Centers vertically */
+      transform: translateY(-50%); /* Adjusts for exact center */
+      width: 350px;  /* Smaller width for the white box */
+      height: 400px; /* Height adjusted to match the smaller width */
+      background-color: white; /* White background */
+      border: 2px solid white; /* White outlines */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .left-box video {
+      width: 100%;  /* Video fills the box */
+      height: 100%;
+      object-fit: cover; /* Ensures video scales and maintains aspect ratio */
+    }
+
+    /* Text Above the Box */
+    .above-box-text {
+      position: absolute;
+      left: 100px; /* Same left position as the box */
+      top: calc(50% - 250px); /* Positioned above the box */
+      font-size: 30px;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      z-index: 2;
+      animation: glow 3s infinite alternate; /* Slower glow animation */
+    }
+
+    /* Circle Image at Top-Right */
+    .circle-image {
+      position: absolute;
+      top: 20px; /* Positioning it towards the top */
+      right: 20px; /* Positioning it towards the right */
+      width: 250px; /* Size of the circle */
+      height: 250px; /* Size of the circle */
+      border-radius: 50%; /* Makes the image circular */
+      overflow: hidden; /* Ensures the image fits inside the circle */
+      border: 3px solid white; /* Optional: white border around the circle */
+      z-index: 10; /* Keeps it on top of other elements */
+    }
+
+    .circle-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures the image fills the circle */
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Overlay that appears on page load -->
+  <div class="overlay" id="overlay">
+    <div class="overlay-text" onclick="enterSite()">Click to Enter</div>
+  </div>
+
+  <!-- Circle image at top-right -->
+  <div class="circle-image">
+    <img src="webpfps.png" alt="Web PFP">
+  </div>
+
+  <!-- Text Above the Box -->
+  <div class="above-box-text">my sexy baby</div>
+
+  <!-- Left White Box with Video -->
+  <div class="left-box">
+    <video autoplay muted loop>
+      <source src="your-video.mp4" type="video/mp4">
+      <!-- Add more video formats if needed, e.g. WebM or Ogg -->
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="transparent-box">
+    <div class="glowing-text">raveinjapan</div>
+    <div class="socials-text">socials</div>
+    <!-- Left Button with image -->
+    <a href="https://www.roblox.com/users/7916242345/profile" target="_blank" class="button-container button-left">
+      <img src="roblox-icon.png" alt="Profile Button"> <!-- Roblox button -->
+    </a>
+    <!-- Right Button with image -->
+    <a href="https://www.tiktok.com/@submissiveboy27?_t=ZN-8u33VGCfMGc&_r=1" target="_blank" class="button-container button-right">
+      <img src="tiktok-icon.png" alt="TikTok Button"> <!-- TikTok button -->
+    </a>
+  </div>
+
+  <!-- Audio -->
+  <audio id="audio" loop>
+    <source src="audio-1.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    function enterSite() {
+      // Add the fade effect to the overlay
+      document.getElementById('overlay').classList.add('overlay-fade');
+      
+      // Start playing the music
+      var audio = document.getElementById('audio');
+      audio.play(); // Play the audio
+      audio.muted = false; // Ensure the audio is not muted
+    }
+  </script>
+
+</body>
+</html>
