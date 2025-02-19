@@ -142,7 +142,6 @@
       align-items: center;
     }
 
-    /* Replace video with image and ensure it covers the box */
     .left-box img {
       width: 100%;
       height: 100%;
@@ -180,6 +179,91 @@
       object-fit: cover;
     }
 
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .left-box {
+        width: 80%;
+        height: 300px;
+        left: 10%;
+      }
+
+      .transparent-box {
+        width: 80%;
+        height: 200px;
+        margin-top: 20px;
+      }
+
+      .glowing-text {
+        font-size: 28px;
+      }
+
+      .socials-text {
+        font-size: 16px;
+      }
+
+      .button-left {
+        left: 10%;
+      }
+
+      .button-right {
+        left: 80%;
+      }
+
+      .above-box-text {
+        font-size: 24px;
+        top: 20%;
+      }
+
+      .circle-image {
+        width: 150px;
+        height: 150px;
+        top: 10px;
+        right: 10px;
+      }
+    }
+
+    /* Smaller Mobile Styles */
+    @media (max-width: 480px) {
+      .left-box {
+        width: 90%;
+        height: 250px;
+        left: 5%;
+      }
+
+      .transparent-box {
+        width: 90%;
+        height: 180px;
+      }
+
+      .glowing-text {
+        font-size: 24px;
+      }
+
+      .socials-text {
+        font-size: 14px;
+      }
+
+      .button-left {
+        left: 5%;
+      }
+
+      .button-right {
+        left: 85%;
+      }
+
+      .above-box-text {
+        font-size: 20px;
+        top: 10%;
+      }
+
+      .circle-image {
+        width: 120px;
+        height: 120px;
+        top: 10px;
+        right: 10px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -192,9 +276,8 @@
     <img src="webpfps.png" alt="Web PFP">
   </div>
 
-  <div class="above-box-text">my little kitty</div>
+  <div class="above-box-text">my sexy baby</div>
 
-  <!-- Left White Box with Image -->
   <div class="left-box">
     <img src="IMG_6824.png" alt="Your Image">
   </div>
@@ -202,17 +285,14 @@
   <div class="transparent-box">
     <div class="glowing-text">raveinjapan</div>
     <div class="socials-text">socials</div>
-    <!-- Left Button with image -->
     <a href="https://www.roblox.com/users/7916242345/profile" target="_blank" class="button-container button-left">
-      <img src="roblox-icon.png" alt="Profile Button"> <!-- Roblox button -->
+      <img src="roblox-icon.png" alt="Profile Button">
     </a>
-    <!-- Right Button with image -->
     <a href="https://www.tiktok.com/@submissiveboy27?_t=ZN-8u33VGCfMGc&_r=1" target="_blank" class="button-container button-right">
-      <img src="tiktok-icon.png" alt="TikTok Button"> <!-- TikTok button -->
+      <img src="tiktok-icon.png" alt="TikTok Button">
     </a>
   </div>
 
-  <!-- Audio -->
   <audio id="audio" loop>
     <source src="audio-1.mp3" type="audio/mp3">
     Your browser does not support the audio element.
@@ -220,13 +300,10 @@
 
   <script>
     function enterSite() {
-      // Add the fade effect to the overlay
       document.getElementById('overlay').classList.add('overlay-fade');
-      
-      // Start playing the music
       var audio = document.getElementById('audio');
-      audio.play(); // Play the audio
-      audio.muted = false; // Ensure the audio is not muted
+      audio.play();
+      audio.muted = false;
     }
   </script>
 
