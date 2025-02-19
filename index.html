@@ -16,10 +16,9 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      overflow: hidden; /* Prevents scrolling during the overlay phase */
+      overflow: hidden;
     }
 
-    /* Dark overlay with the "Click to Enter" text */
     .overlay {
       position: absolute;
       top: 0;
@@ -30,7 +29,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 999; /* Ensures overlay is on top */
+      z-index: 999;
       opacity: 1;
       transition: opacity 1s ease;
     }
@@ -44,10 +43,9 @@
       cursor: pointer;
     }
 
-    /* Dark overlay fade-out */
     .overlay-fade {
       opacity: 0;
-      pointer-events: none; /* Disables interaction after fade */
+      pointer-events: none;
     }
 
     body::before {
@@ -57,17 +55,17 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent overlay */
-      z-index: 0; /* Ensures the overlay is behind the box */
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 0;
     }
 
     .transparent-box {
-      width: 500px;  /* Increased width */
-      height: 300px; /* Increased height */
-      background-color: rgba(255, 255, 255, 0.6); /* More transparent (opacity: 0.6) */
-      border-radius: 10px; /* Optional: rounded corners */
-      box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.4); /* Reduced glow effect */
-      z-index: 1; /* Ensures the box is on top of the overlay */
+      width: 500px;
+      height: 300px;
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 10px;
+      box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.4);
+      z-index: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -83,22 +81,21 @@
       text-transform: uppercase;
       position: relative;
       z-index: 2;
-      margin-top: -80px; /* Moved the text further up */
-      animation: glow 3s infinite alternate; /* Slower glow animation */
+      margin-top: -80px;
+      animation: glow 3s infinite alternate;
     }
 
     .socials-text {
       color: white;
-      font-size: 20px; /* Smaller font size for 'socials' */
+      font-size: 20px;
       text-align: center;
       text-transform: uppercase;
       position: relative;
       z-index: 2;
-      margin-top: 20px; /* Adds space between the texts */
-      animation: glow 3s infinite alternate; /* Slower glow animation */
+      margin-top: 20px;
+      animation: glow 3s infinite alternate;
     }
 
-    /* Glowing text effect with reduced intensity */
     @keyframes glow {
       0% {
         text-shadow: 0 0 2px white, 0 0 3px white, 0 0 6px white;
@@ -108,110 +105,98 @@
       }
     }
 
-    /* Button image */
     .button-container {
       position: absolute;
-      z-index: 3;    /* Ensures it is on top of the overlay */
+      z-index: 3;
     }
 
-    /* Left button */
     .button-left {
-      left: 180px;   /* Adjusted slightly to the left */
-      bottom: 40px;  /* Moved the left button up a little */
+      left: 180px;
+      bottom: 40px;
     }
 
-    /* Right button */
     .button-right {
-      left: 260px;   /* Adjusted slightly to the right, same distance as left button */
-      bottom: 40px;  /* Moved the right button up a little */
+      left: 260px;
+      bottom: 40px;
     }
 
     .button-container img {
-      width: 60px;   /* Button image size */
-      height: 60px;  /* Button image size */
-      border-radius: 5px; /* Optional: rounded corners for the image */
-      cursor: pointer; /* Makes the image clickable like a button */
-      background: transparent; /* Ensures the background doesn't override transparency */
+      width: 60px;
+      height: 60px;
+      border-radius: 5px;
+      cursor: pointer;
+      background: transparent;
     }
 
-    /* Left White Box with Video */
     .left-box {
       position: absolute;
-      left: 100px;  /* Added more space from the left side */
-      top: 50%;  /* Centers vertically */
-      transform: translateY(-50%); /* Adjusts for exact center */
-      width: 350px;  /* Smaller width for the white box */
-      height: 400px; /* Height adjusted to match the smaller width */
-      background-color: white; /* White background */
-      border: 2px solid white; /* White outlines */
+      left: 100px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 350px;
+      height: 400px;
+      background-color: white;
+      border: 2px solid white;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .left-box video {
-      width: 100%;  /* Video fills the box */
+    /* Replace video with image and ensure it covers the box */
+    .left-box img {
+      width: 100%;
       height: 100%;
-      object-fit: cover; /* Ensures video scales and maintains aspect ratio */
+      object-fit: cover;
     }
 
-    /* Text Above the Box */
     .above-box-text {
       position: absolute;
-      left: 100px; /* Same left position as the box */
-      top: calc(50% - 250px); /* Positioned above the box */
+      left: 100px;
+      top: calc(50% - 250px);
       font-size: 30px;
       color: white;
       font-weight: bold;
       text-align: center;
       text-transform: uppercase;
       z-index: 2;
-      animation: glow 3s infinite alternate; /* Slower glow animation */
+      animation: glow 3s infinite alternate;
     }
 
-    /* Circle Image at Top-Right */
     .circle-image {
       position: absolute;
-      top: 20px; /* Positioning it towards the top */
-      right: 20px; /* Positioning it towards the right */
-      width: 250px; /* Size of the circle */
-      height: 250px; /* Size of the circle */
-      border-radius: 50%; /* Makes the image circular */
-      overflow: hidden; /* Ensures the image fits inside the circle */
-      border: 3px solid white; /* Optional: white border around the circle */
-      z-index: 10; /* Keeps it on top of other elements */
+      top: 20px;
+      right: 20px;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid white;
+      z-index: 10;
     }
 
     .circle-image img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Ensures the image fills the circle */
+      object-fit: cover;
     }
 
   </style>
 </head>
 <body>
 
-  <!-- Overlay that appears on page load -->
   <div class="overlay" id="overlay">
     <div class="overlay-text" onclick="enterSite()">Click to Enter</div>
   </div>
 
-  <!-- Circle image at top-right -->
   <div class="circle-image">
     <img src="webpfps.png" alt="Web PFP">
   </div>
 
-  <!-- Text Above the Box -->
-  <div class="above-box-text">my sexy baby</div>
+  <div class="above-box-text">my little kitty</div>
 
-  <!-- Left White Box with Video -->
+  <!-- Left White Box with Image -->
   <div class="left-box">
-    <video autoplay muted loop>
-      <source src="your-video.mp4" type="video/mp4">
-      <!-- Add more video formats if needed, e.g. WebM or Ogg -->
-      Your browser does not support the video tag.
-    </video>
+    <img src="IMG_6824.png" alt="Your Image">
   </div>
 
   <div class="transparent-box">
