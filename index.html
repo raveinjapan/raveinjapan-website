@@ -128,65 +128,8 @@
       background: transparent;
     }
 
-    .left-box {
-      position: absolute;
-      left: 100px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 350px;
-      height: 400px;
-      background-color: white;
-      border: 2px solid white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .left-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .above-box-text {
-      position: absolute;
-      left: 100px;
-      top: calc(50% - 250px);
-      font-size: 30px;
-      color: white;
-      font-weight: bold;
-      text-align: center;
-      text-transform: uppercase;
-      z-index: 2;
-      animation: glow 3s infinite alternate;
-    }
-
-    .circle-image {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 3px solid white;
-      z-index: 10;
-    }
-
-    .circle-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
     /* Mobile Styles */
     @media (max-width: 768px) {
-      .left-box {
-        width: 80%;
-        height: 300px;
-        left: 10%;
-      }
-
       .transparent-box {
         width: 80%;
         height: 200px;
@@ -208,28 +151,10 @@
       .button-right {
         left: 80%;
       }
-
-      .above-box-text {
-        font-size: 24px;
-        top: 20%;
-      }
-
-      .circle-image {
-        width: 150px;
-        height: 150px;
-        top: 10px;
-        right: 10px;
-      }
     }
 
     /* Smaller Mobile Styles */
     @media (max-width: 480px) {
-      .left-box {
-        width: 90%;
-        height: 250px;
-        left: 5%;
-      }
-
       .transparent-box {
         width: 90%;
         height: 180px;
@@ -250,18 +175,34 @@
       .button-right {
         left: 85%;
       }
+    }
 
-      .above-box-text {
-        font-size: 20px;
-        top: 10%;
-      }
+    /* Video Box Style */
+    .video-box {
+      position: absolute;
+      left: 50px; /* Adjust position from the left side */
+      top: 50%;
+      transform: translateY(-50%);
+      width: 500px; /* Adjust size of the video box */
+      height: 300px;
+      background-color: rgba(0, 0, 0, 0.7); /* Black background with transparency */
+      border-radius: 10px;
+      box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.5s ease-in-out; /* Smooth transition */
+    }
 
-      .circle-image {
-        width: 120px;
-        height: 120px;
-        top: 10px;
-        right: 10px;
-      }
+    .video-box video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .hidden {
+      display: none;
     }
 
   </style>
@@ -272,17 +213,7 @@
     <div class="overlay-text" onclick="enterSite()">Click to Enter</div>
   </div>
 
-  <div class="circle-image">
-    <img src="webpfps.png" alt="Web PFP">
-  </div>
-
-  <div class="above-box-text"></div>
-
-  <div class="left-box">
-    <img src="IMG_6824.png" alt="Your Image">
-  </div>
-
-  <div class="transparent-box">
+  <div class="transparent-box" id="transparentBox">
     <div class="glowing-text">raveinjapan</div>
     <div class="socials-text">socials</div>
     <a href="https://www.roblox.com/users/7916242345/profile" target="_blank" class="button-container button-left">
@@ -291,6 +222,14 @@
     <a href="https://www.tiktok.com/@submissiveboy27?_t=ZN-8u33VGCfMGc&_r=1" target="_blank" class="button-container button-right">
       <img src="tiktok-icon.png" alt="TikTok Button">
     </a>
+  </div>
+
+  <!-- Video Box -->
+  <div class="video-box" id="videoBox">
+    <video id="video" controls>
+      <source src="your-video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
   </div>
 
   <audio id="audio" loop>
@@ -305,6 +244,41 @@
       audio.play();
       audio.muted = false;
     }
+
+    // Pause the music when the video starts playing
+    var video = document.getElementById('video');
+    var audio = document.getElementById('audio');
+    var videoBox = document.getElementById('videoBox');
+    var transparentBox = document.getElementById('transparentBox');
+
+    // When the video is clicked, move it to the center, hide the transparent box, and make it bigger
+    videoBox.onclick = function() {
+      transparentBox.classList.add('hidden');  // Hide the transparent box
+      videoBox.style.position = 'absolute';    // Change video position to absolute
+      videoBox.style.top = '50%';               // Center the video vertically
+      videoBox.style.left = '50%';              // Center the video horizontally
+      videoBox.style.transform = 'translate(-50%, -50%)'; // Center video
+      videoBox.style.width = '800px';           // Increase video size
+      videoBox.style.height = '450px';          // Increase video size
+      video.play();                            // Start the video
+
+      // Pause the background music
+      audio.pause();
+    };
+
+    // When the video ends, restart the background music and return layout to normal
+    video.onended = function() {
+      // After the video ends, reset the layout
+      transparentBox.classList.remove('hidden');
+      videoBox.style.position = 'absolute';    // Set back to absolute positioning
+      videoBox.style.top = '50%';
+      videoBox.style.left = '50px';             // Return video to original position on left side
+      videoBox.style.transform = 'translateY(-50%)'; // Reset to original position
+      videoBox.style.width = '500px';           // Reset to original width
+      videoBox.style.height = '300px';          // Reset to original height
+      audio.currentTime = 0;                   // Reset music to the beginning
+      audio.play();                            // Restart the background music
+    };
   </script>
 
 </body>
