@@ -151,6 +151,12 @@
       .button-right {
         left: 80%;
       }
+
+      /* Video Box adjustments on mobile */
+      .video-box {
+        width: 80%; /* Take up most of the screen width */
+        height: 200px; /* Adjust the height */
+      }
     }
 
     /* Smaller Mobile Styles */
@@ -175,6 +181,12 @@
       .button-right {
         left: 85%;
       }
+
+      /* Video Box adjustments for small screens */
+      .video-box {
+        width: 90%; /* Use most of the width */
+        height: 180px; /* Adjust height for small screens */
+      }
     }
 
     /* Video Box Style */
@@ -183,7 +195,7 @@
       left: 50px; /* Adjust position from the left side */
       top: 50%;
       transform: translateY(-50%);
-      width: 500px; /* Adjust size of the video box */
+      width: 500px; /* Default size for large screens */
       height: 300px;
       background-color: rgba(0, 0, 0, 0.7); /* Black background with transparency */
       border-radius: 10px;
@@ -258,8 +270,8 @@
       videoBox.style.top = '50%';               // Center the video vertically
       videoBox.style.left = '50%';              // Center the video horizontally
       videoBox.style.transform = 'translate(-50%, -50%)'; // Center video
-      videoBox.style.width = '800px';           // Increase video size
-      videoBox.style.height = '450px';          // Increase video size
+      videoBox.style.width = '80%';             // Increase video size for mobile
+      videoBox.style.height = '50vh';           // Adjust video height for mobile
       video.play();                            // Start the video
 
       // Pause the background music
