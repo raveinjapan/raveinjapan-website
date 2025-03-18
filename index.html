@@ -3,295 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rave in Japan</title>
-  <link rel="icon" href="10-2-anime-png-images.png" type="image/png">
+  <title>Rave In Japan's Diary</title>
   <style>
+    /* Remove the background image */
     body {
+      background-color: #000; /* Set background color to black */
+      color: white; /* Make the text white */
+      font-family: Arial, sans-serif;
       margin: 0;
-      height: 100vh;
-      background-image: url('wallhaven-gpyldl.png');
-      background-size: cover;
-      background-position: center;
+      padding: 0;
+      height: 100vh; /* Full viewport height */
       display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
+      justify-content: flex-start; /* Align the text to the left */
+      align-items: flex-start; /* Align the content to the top */
+      padding: 20px; /* Add some padding for better spacing */
     }
 
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-      opacity: 1;
-      transition: opacity 1s ease;
+    /* Styling for the preformatted text */
+    pre {
+      font-size: 1.1em; /* Slightly smaller font size */
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.6); /* Glowing effect */
+      white-space: pre-wrap; /* Ensure the text wraps correctly */
+      word-wrap: break-word; /* Break long words to fit */
+      width: auto; /* Let the text container auto size */
+      margin: 0;
     }
-
-    .overlay-text {
-      color: white;
-      font-size: 40px;
-      font-weight: bold;
-      text-align: center;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
-
-    .overlay-fade {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    body::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 0;
-    }
-
-    .transparent-box {
-      width: 500px;
-      height: 300px;
-      background-color: rgba(255, 255, 255, 0.6);
-      border-radius: 10px;
-      box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.4);
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-
-    .glowing-text {
-      color: white;
-      font-size: 40px;
-      font-weight: bold;
-      text-align: center;
-      text-transform: uppercase;
-      position: relative;
-      z-index: 2;
-      margin-top: -80px;
-      animation: glow 3s infinite alternate;
-    }
-
-    .socials-text {
-      color: white;
-      font-size: 20px;
-      text-align: center;
-      text-transform: uppercase;
-      position: relative;
-      z-index: 2;
-      margin-top: 20px;
-      animation: glow 3s infinite alternate;
-    }
-
-    @keyframes glow {
-      0% {
-        text-shadow: 0 0 2px white, 0 0 3px white, 0 0 6px white;
-      }
-      100% {
-        text-shadow: 0 0 4px white, 0 0 6px white, 0 0 8px white;
-      }
-    }
-
-    .button-container {
-      position: absolute;
-      z-index: 3;
-    }
-
-    .button-left {
-      left: 180px;
-      bottom: 40px;
-    }
-
-    .button-right {
-      left: 260px;
-      bottom: 40px;
-    }
-
-    .button-container img {
-      width: 60px;
-      height: 60px;
-      border-radius: 5px;
-      cursor: pointer;
-      background: transparent;
-    }
-
-    /* Mobile Styles */
-    @media (max-width: 768px) {
-      .transparent-box {
-        width: 80%;
-        height: 200px;
-        margin-top: 20px;
-      }
-
-      .glowing-text {
-        font-size: 28px;
-      }
-
-      .socials-text {
-        font-size: 16px;
-      }
-
-      .button-left {
-        left: 10%;
-      }
-
-      .button-right {
-        left: 80%;
-      }
-
-      /* Video Box adjustments on mobile */
-      .video-box {
-        width: 80%; /* Take up most of the screen width */
-        height: 200px; /* Adjust the height */
-      }
-    }
-
-    /* Smaller Mobile Styles */
-    @media (max-width: 480px) {
-      .transparent-box {
-        width: 90%;
-        height: 180px;
-      }
-
-      .glowing-text {
-        font-size: 24px;
-      }
-
-      .socials-text {
-        font-size: 14px;
-      }
-
-      .button-left {
-        left: 5%;
-      }
-
-      .button-right {
-        left: 85%;
-      }
-
-      /* Video Box adjustments for small screens */
-      .video-box {
-        width: 90%; /* Use most of the width */
-        height: 180px; /* Adjust height for small screens */
-      }
-    }
-
-    /* Video Box Style */
-    .video-box {
-      position: absolute;
-      left: 50px; /* Adjust position from the left side */
-      top: 50%;
-      transform: translateY(-50%);
-      width: 500px; /* Default size for large screens */
-      height: 300px;
-      background-color: rgba(0, 0, 0, 0.7); /* Black background with transparency */
-      border-radius: 10px;
-      box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.5s ease-in-out; /* Smooth transition */
-    }
-
-    .video-box video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .hidden {
-      display: none;
-    }
-
   </style>
 </head>
 <body>
+  <pre>
+Rave In Japans Diary
 
-  <div class="overlay" id="overlay">
-    <div class="overlay-text" onclick="enterSite()">Click to Enter</div>
-  </div>
+...................................................................................................................................
 
-  <div class="transparent-box" id="transparentBox">
-    <div class="glowing-text">raveinjapan</div>
-    <div class="socials-text">socials</div>
-    <a href="https://www.roblox.com/users/7916242345/profile" target="_blank" class="button-container button-left">
-      <img src="roblox-icon.png" alt="Profile Button">
-    </a>
-    <a href="https://www.tiktok.com/@submissiveboy27?_t=ZN-8u33VGCfMGc&_r=1" target="_blank" class="button-container button-right">
-      <img src="tiktok-icon.png" alt="TikTok Button">
-    </a>
-  </div>
+You dont understand Ive never catched feelings that fast for a girl before I loved you so much
+and I wish you loved me the same way I love you, Its like everything reminds me of you even
+listening to billie eilish it makes me think of you, your voice is stuck in my head and I cant
+get you out I dont understand why we had to end like that you was my world and I honestly loved you
+so fucking much If only you could remove that 1 guy I trusted you so much I wanted it work out between
+us I really did like you alot, I can just see everything we could of had our first time we met up the first
+time our hands collides with eachother I could see it all, all the little dates we would go on, going to concerts
+with eachother smiling with one another I wanted you. and only you I really wish you could of got him gone for me 
+I really do but maybe just in another life or universe we can come across eachother and truely love eachother and grew
+old together.
 
-  <!-- Video Box -->
-  <div class="video-box" id="videoBox">
-    <video id="video" controls>
-      <source src="your-video.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
+I just dont understand like I know the actions I have and the way I present myself isnt a good way either but I just want
+to make people laugh I want to give people attention I want to be noticed, all of my other exs have cheated on me every
+single one of them did it to me I dont know why I dont know what I did wrong I did everything you asked me for I removed
+everyone I even went to the point we was spending time 24/7 together talking playing the game laughing now and then and tbh
+its not even about the sexual stuff we had I dont care about sexual stuff at all a relationship isnt about sexual shit
 
-  <audio id="audio" loop>
-    <source src="audio-1.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-  </audio>
+All I wanted was normal and simple things.
 
-  <script>
-    function enterSite() {
-      document.getElementById('overlay').classList.add('overlay-fade');
-      var audio = document.getElementById('audio');
-      audio.play();
-      audio.muted = false;
-    }
+1. love
+2. attention
+3. comfort
 
-    // Pause the music when the video starts playing
-    var video = document.getElementById('video');
-    var audio = document.getElementById('audio');
-    var videoBox = document.getElementById('videoBox');
-    var transparentBox = document.getElementById('transparentBox');
+But theses 3 simple things was just to much, I was never enough for you was I we had such a good day that day i remember saying
+"goodnight I love you so much mwa" and while I was sleeping because I wasnt giving you any attention you went out your way and 
+started to speak to another guy the thing that just makes me so fucking angry about this all is I told you I legit told you
+please dont add any other guys as yes ill admit im insecure and I dont want my woman speaking to other males I dont trust them
+from all my past relationships Ive had and Im sorry but that is the way I am and i thought you would accept me for that. It was
+suppose to be me and you against the world but I got hurt once again lmao
 
-    // When the video is clicked, move it to the center, hide the transparent box, and make it bigger
-    videoBox.onclick = function() {
-      transparentBox.classList.add('hidden');  // Hide the transparent box
-      videoBox.style.position = 'absolute';    // Change video position to absolute
-      videoBox.style.top = '50%';               // Center the video vertically
-      videoBox.style.left = '50%';              // Center the video horizontally
-      videoBox.style.transform = 'translate(-50%, -50%)'; // Center video
-      videoBox.style.width = '80%';             // Increase video size for mobile
-      videoBox.style.height = '50vh';           // Adjust video height for mobile
-      video.play();                            // Start the video
+I actually give up why cant I just be happy every girl I come across is always wanting me for something I fucking hate it so much
+there always asking for sexual stuff I dont fuck with that I want love I want it to be the right person.
 
-      // Pause the background music
-      audio.pause();
-    };
-
-    // When the video ends, restart the background music and return layout to normal
-    video.onended = function() {
-      // After the video ends, reset the layout
-      transparentBox.classList.remove('hidden');
-      videoBox.style.position = 'absolute';    // Set back to absolute positioning
-      videoBox.style.top = '50%';
-      videoBox.style.left = '50px';             // Return video to original position on left side
-      videoBox.style.transform = 'translateY(-50%)'; // Reset to original position
-      videoBox.style.width = '500px';           // Reset to original width
-      videoBox.style.height = '300px';          // Reset to original height
-      audio.currentTime = 0;                   // Reset music to the beginning
-      audio.play();                            // Restart the background music
-    };
-  </script>
-
+...................................................................................................................................
+  </pre>
 </body>
 </html>
